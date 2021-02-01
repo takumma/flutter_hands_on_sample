@@ -25,15 +25,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          TodoItem(),
+          TodoItem(),
+          TodoItem(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
