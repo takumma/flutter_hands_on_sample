@@ -18,18 +18,23 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  List<String> todoItems = [
+    "英語の課題",
+    "牛乳を買う",
+    "Flutterの環境構築をする",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          _todoItem("英語の課題"),
-          _todoItem("牛乳を買う"),
-          _todoItem("Flutterの環境構築をする"),
-        ],
+      body: ListView.builder(
+        itemCount: todoItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _todoItem(todoItems[index]);
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -39,11 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _todoItem (String title) {
+  Widget _todoItem(String title) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 1.0)
-      ),
+      decoration:
+          BoxDecoration(border: Border.all(width: 1.0, color: Colors.grey)),
       margin: EdgeInsets.all(5.0),
       child: ListTile(
         title: Text(
