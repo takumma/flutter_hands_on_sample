@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hands_on/todo_item.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -27,15 +26,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          TodoItem(),
-          TodoItem(),
-          TodoItem(),
+          _todoItem("英語の課題"),
+          _todoItem("牛乳を買う"),
+          _todoItem("Flutterの環境構築をする"),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _todoItem (String title) {
+    return Container(
+      child: ListTile(
+        title: Text(
+          title,
+        ),
       ),
     );
   }
