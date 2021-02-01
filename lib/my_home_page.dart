@@ -10,19 +10,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   List<String> todoItems = [
     "英語の課題",
     "牛乳を買う",
     "Flutterの環境構築をする",
   ];
+
+  void _addTodo() {
+    setState(() {
+      todoItems.add("新しいタスク");
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
+        itemCount: todoItems.length,
         itemBuilder: (BuildContext context, int index) {
-          return _todoItem(todoItems[0]);
+          return _todoItem(todoItems[index]);
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _addTodo,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
