@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hands_on/todo_item.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -28,13 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
           ],
         ),
       ),
