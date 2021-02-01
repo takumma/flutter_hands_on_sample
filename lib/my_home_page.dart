@@ -31,9 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-        itemCount: todoItems.length,
         itemBuilder: (BuildContext context, int index) {
-          return _todoItem(todoItems[index]);
+          return _todoItem(todoItems[0]);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -46,8 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _todoItem(String title) {
     return Container(
-      decoration:
-          BoxDecoration(border: Border.all(width: 1.0, color: Colors.grey)),
+      decoration: BoxDecoration(
+        border: Border.all(width: 1.0, color: Colors.grey),
+      ),
       margin: EdgeInsets.all(5.0),
       child: ListTile(
         title: Text(
