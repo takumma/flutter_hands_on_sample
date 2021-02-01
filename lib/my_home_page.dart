@@ -41,6 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _todoItem (String title) {
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 1.0)
+      ),
+      margin: EdgeInsets.all(5.0),
       child: ListTile(
         title: Text(
           title,
