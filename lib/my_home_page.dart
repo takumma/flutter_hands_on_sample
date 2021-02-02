@@ -17,9 +17,9 @@ class _MyHomePageState extends State<MyHomePage> {
     "Flutterの環境構築をする",
   ];
 
-  void _addTodo() {
+  void _addTodo(String title) {
     setState(() {
-      todoItems.add("新しいタスク");
+      todoItems.add(title);
     });
   }
 
@@ -38,8 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _addTodo,
-        tooltip: 'Increment',
+        onPressed: () => _addTodo("引数から渡したタスク"),
+        tooltip: 'add todo',
         child: Icon(Icons.add),
       ),
     );
