@@ -10,7 +10,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<String> todoItems = [
     "英語の課題",
     "牛乳を買う",
@@ -22,8 +21,6 @@ class _MyHomePageState extends State<MyHomePage> {
       todoItems.add(title);
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addTodo("引数から渡したタスク"),
+        onPressed: () {
+          showFormDialog(context);
+        },
         tooltip: 'add todo',
         child: Icon(Icons.add),
       ),
@@ -55,6 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(
           title,
         ),
+      ),
+    );
+  }
+
+  void showFormDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text("新しいTODOを追加"),
+        content: Text("テキスト"),
+        actions: <Widget>[
+          RaisedButton(
+            child: Text("Add"),
+            onPressed: () => _addTodo("ダイアログからのTODO"),
+          ),
+        ],
       ),
     );
   }
