@@ -1,9 +1,10 @@
 name: deploy
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -11,16 +12,29 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@master
-    - uses: subosito/flutter-action@v1
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: main
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v1
       with:
         channel: 'beta'
 
-    - name: Run a flutter build and deploy
+    - name: Setting for Web Deploy
       run: |
+        flutter upgrade
         flutter config --enable-web
+        flutter create .
+    
+    - name: Install
+      run: |
         flutter pub get
-        flutter build web
+
+    - name: Build
+      run: flutter build web
+    
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
