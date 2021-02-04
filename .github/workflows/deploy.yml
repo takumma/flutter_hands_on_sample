@@ -26,7 +26,6 @@ jobs:
       run: |
         flutter upgrade
         flutter config --enable-web
-        flutter create .
     
     - name: Install
       run: |
