@@ -34,7 +34,9 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2.8.0
-        with:
+        env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./build/web
+        with:
+          emptyCommits: true
