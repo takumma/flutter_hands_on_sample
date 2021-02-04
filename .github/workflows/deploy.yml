@@ -33,7 +33,7 @@ jobs:
         run: flutter build web
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.8.8
+        uses: peaceiris/actions-gh-pages@v2.8.0
         with:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
