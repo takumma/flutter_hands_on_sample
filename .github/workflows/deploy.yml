@@ -23,14 +23,10 @@ jobs:
         channel: 'beta'
 
     - name: Setting for Web Deploy
-      run: |
-        flutter upgrade
-        flutter config --enable-web
-        flutter clean
+      run: flutter config --enable-web
 
     - name: Install
-      run: |
-        flutter pub get
+      run: flutter pub get
 
     - name: Build
       run: flutter build web
