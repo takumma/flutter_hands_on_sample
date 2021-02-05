@@ -29,7 +29,7 @@ jobs:
 
     - name: Install
       run: |
-        flutter pub get
+        pub get
 
     - name: Build
       run: flutter build web
