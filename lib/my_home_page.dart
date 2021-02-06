@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Text("Add"),
             onPressed: () {
               _addTodo(_title);
+              _controller.clear();
               Navigator.pop(context);
             },
           ),
