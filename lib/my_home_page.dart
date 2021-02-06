@@ -63,9 +63,17 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text("新しいTODOを追加"),
-        content: Text("テキスト"),
+        content: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("TODOを入力してください"),
+              TextField(),
+            ],
+          ),
+        ),
         actions: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text("Add"),
             onPressed: () {
               _addTodo("ダイアログからのTODO");
