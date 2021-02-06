@@ -10,6 +10,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  TextEditingController _controller;
+
   List<String> _todoItems = [
     "英語の課題",
     "牛乳を買う",
@@ -20,6 +23,17 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _todoItems.add(title);
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -62,12 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("新しいTODOを追加"),
+        title: const Text("新しいTODOを追加"),
         content: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("TODOを入力してください"),
+              const Text("TODOを入力してください"),
               TextField(),
             ],
           ),
