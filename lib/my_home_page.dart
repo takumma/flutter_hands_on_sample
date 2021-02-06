@@ -10,7 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> todoItems = [
+  List<String> _todoItems = [
     "英語の課題",
     "牛乳を買う",
     "Flutterの環境構築をする",
@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addTodo(String title) {
     setState(() {
-      todoItems.add(title);
+      _todoItems.add(title);
     });
   }
 
@@ -29,9 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-        itemCount: todoItems.length,
+        itemCount: _todoItems.length,
         itemBuilder: (BuildContext context, int index) {
-          return _todoItem(todoItems[index]);
+          return _todoItem(_todoItems[index]);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -67,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: <Widget>[
           RaisedButton(
             child: Text("Add"),
-            onPressed: () => _addTodo("ダイアログからのTODO"),
+            onPressed: () {
+              _addTodo("ダイアログからのTODO");
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
