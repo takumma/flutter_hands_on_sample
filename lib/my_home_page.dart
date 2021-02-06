@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void showFormDialog(BuildContext context) {
+    String _title = "";
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -82,7 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text("TODOを入力してください"),
-              TextField(),
+              TextField(
+                controller: _controller,
+                onChanged: (String text) => _title = text,
+              ),
             ],
           ),
         ),
@@ -90,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             child: Text("Add"),
             onPressed: () {
-              _addTodo("ダイアログからのTODO");
+              _addTodo(_title);
               Navigator.pop(context);
             },
           ),
