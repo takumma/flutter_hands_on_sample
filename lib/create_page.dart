@@ -39,7 +39,7 @@ class _CreatePageState extends State<CreatePage> {
               onChanged: (String text) => _title = text,
             ),
             ElevatedButton(
-              child: Text("Add"),
+              child: const Text("Add"),
               onPressed: () {
                 _controller.clear();
                 Navigator.pop(context, _title);
