@@ -42,7 +42,7 @@ class _CreatePageState extends State<CreatePage> {
               child: Text("Add"),
               onPressed: () {
                 _controller.clear();
-                Navigator.pop(context);
+                Navigator.pop(context, _title);
               },
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hands_on/create_page.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -10,7 +11,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   TextEditingController _controller;
 
   List<String> _todoItems = [
@@ -49,7 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed("/create"),
+        onPressed: () async {
+          final String title = await Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          _addTodo(title);
+        },
         child: Icon(Icons.add),
       ),
     );
