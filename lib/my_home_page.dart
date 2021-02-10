@@ -36,6 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTodo(String title) {
+    setState(() {
+      _todoItems.remove(title);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,11 +81,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void showDetailDialog(BuildContext context, String title) {
     showDialog(
       context: context,
-      builder: (BuildContext context) => SimpleDialog(
+      builder: (BuildContext context) => AlertDialog(
         title: Text(title),
-        children: [
-          Text(title),
-          Text(title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            color: Colors.red,
+            onPressed: () {
+              _deleteTodo(title);
+            },
+          ),
         ],
       ),
     );
