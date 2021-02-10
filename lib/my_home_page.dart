@@ -43,8 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'add todo',
+        onPressed: () => Navigator.of(context).pushNamed("/create"),
         child: Icon(Icons.add),
       ),
     );
