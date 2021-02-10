@@ -18,9 +18,14 @@ class TodoModelRepository {
     await box.add(TodoModel(title));
   }
 
-  Future<List<TodoModel>> fetch() async {
+  Future<List<String>> fetch() async {
     Box box = await _box;
-    List<TodoModel> todoItems = box.values.toList();
+    List<TodoModel> modelList = box.values.toList();
+    List<String> todoItems = modelList.map((todo) => todo.title).toList();
     return todoItems;
+  }
+
+  Future<void> delete(title) async {
+    Box box = await _box;
   }
 }

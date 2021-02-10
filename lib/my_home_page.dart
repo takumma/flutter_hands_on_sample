@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/create_page.dart';
+import 'package:flutter_hands_on/model/db.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,16 +14,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _controller;
 
-  List<String> _todoItems = [
-    "英語の課題",
-    "牛乳を買う",
-    "Flutterの環境構築をする",
-  ];
+  TodoModelRepository _repository = TodoModelRepository();
+
+  List<String> _todoItems = [];
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
     _controller = TextEditingController();
+    _todoItems = await _repository.fetch();
   }
 
   void dispose() {
@@ -33,12 +33,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _addTodo(String title) {
     setState(() {
       _todoItems.add(title);
+      _repository.save(title);
     });
   }
 
   void _deleteTodo(String title) {
     setState(() {
       _todoItems.remove(title);
+      _repository.delete(title);
     });
   }
 
