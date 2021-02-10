@@ -19,12 +19,6 @@ class _MyHomePageState extends State<MyHomePage> {
     "Flutterの環境構築をする",
   ];
 
-  void _addTodo(String title) {
-    setState(() {
-      _todoItems.add(title);
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -49,9 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showFormDialog(context);
-        },
+        onPressed: () {},
         tooltip: 'add todo',
         child: Icon(Icons.add),
       ),
@@ -68,38 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(
           title,
         ),
-      ),
-    );
-  }
-
-  void showFormDialog(BuildContext context) {
-    String _title = "";
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text("新しいTODOを追加"),
-        content: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("TODOを入力してください"),
-              TextField(
-                controller: _controller,
-                onChanged: (String text) => _title = text,
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          ElevatedButton(
-            child: Text("Add"),
-            onPressed: () {
-              _addTodo(_title);
-              _controller.clear();
-              Navigator.pop(context);
-            },
-          ),
-        ],
       ),
     );
   }
