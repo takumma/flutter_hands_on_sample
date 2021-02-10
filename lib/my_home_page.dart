@@ -30,6 +30,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  void _addTodo(String title) {
+    setState(() {
+      _todoItems.add(title);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,19 +8,9 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
 
+  String _title = "";
+
   TextEditingController _controller;
-
-  List<String> _todoItems = [
-    "英語の課題",
-    "牛乳を買う",
-    "Flutterの環境構築をする",
-  ];
-
-  void _addTodo(String title) {
-    setState(() {
-      _todoItems.add(title);
-    });
-  }
 
   @override
   void initState() {
@@ -39,38 +29,24 @@ class _CreatePageState extends State<CreatePage> {
       appBar: AppBar(
         title: const Text("Create TODO"),
       ),
-      body: Container(),
-    );
-  }
-
-  void showFormDialog(BuildContext context) {
-    String _title = "";
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text("新しいTODOを追加"),
-        content: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("TODOを入力してください"),
-              TextField(
-                controller: _controller,
-                onChanged: (String text) => _title = text,
-              ),
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("TODOを入力してください"),
+            TextField(
+              controller: _controller,
+              onChanged: (String text) => _title = text,
+            ),
+            ElevatedButton(
+              child: Text("Add"),
+              onPressed: () {
+                _controller.clear();
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
-        actions: <Widget>[
-          ElevatedButton(
-            child: Text("Add"),
-            onPressed: () {
-              _addTodo(_title);
-              _controller.clear();
-              Navigator.pop(context);
-            },
-          ),
-        ],
       ),
     );
   }
