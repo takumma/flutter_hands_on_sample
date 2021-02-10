@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.red,
             onPressed: () {
               _deleteTodo(title);
+              Navigator.pop(context);
             },
           ),
         ],
