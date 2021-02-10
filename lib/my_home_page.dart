@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () async {
           final String title = await Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CreatePage()));
-          _addTodo(title);
+          if (title != null && title != "") _addTodo(title);
         },
         child: Icon(Icons.add),
       ),
