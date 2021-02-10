@@ -67,16 +67,20 @@ class _MyHomePageState extends State<MyHomePage> {
       margin: EdgeInsets.all(5.0),
       child: ListTile(
         title: Text(title),
-        onTap: () => showDialog(
-          context: context,
-          builder: (BuildContext context) => SimpleDialog(
-            title: Text(title),
-            children: [
-              Text(title),
-              Text(title),
-            ],
-          ),
-        ),
+        onTap: () => showDetailDialog(context, title),
+      ),
+    );
+  }
+
+  void showDetailDialog(BuildContext context, String title) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => SimpleDialog(
+        title: Text(title),
+        children: [
+          Text(title),
+          Text(title),
+        ],
       ),
     );
   }
