@@ -5,7 +5,22 @@ part 'db.g.dart';
 @HiveType(typeId: 0)
 class TodoModel {
   @HiveField(0)
-  List<String> todoItems;
+  String title;
 
-  TodoModel(this.todoItems);
+  TodoModel(this.title);
+}
+
+class TodoModelRepository {
+  Future<Box> _box = Hive.openBox<TodoModel>('todoBox');
+
+  void save(title) async {
+    Box box = await _box;
+    await box.add(TodoModel(title));
+  }
+
+  Future<List<TodoModel>> fetch() async {
+    Box box = await _box;
+    List<TodoModel> todoItems = box.values.toList();
+    return todoItems;
+  }
 }
