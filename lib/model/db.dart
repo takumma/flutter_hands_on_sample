@@ -11,21 +11,21 @@ class TodoModel {
 }
 
 class TodoModelRepository {
-  Future<Box> _box = Hive.openBox<TodoModel>('todoBox');
+  Future<Box<TodoModel>> _box = Hive.openBox<TodoModel>('todoBox');
 
   void save(title) async {
-    Box box = await _box;
+    Box<TodoModel> box = await _box;
     await box.add(TodoModel(title));
   }
 
-  Future<List<String>> fetch() async {
-    Box box = await _box;
-    List<TodoModel> modelList = box.values.toList();
-    List<String> todoItems = modelList.map((todo) => todo.title).toList();
+  Future<Map<dynamic, TodoModel>> fetch() async {
+    Box<TodoModel> box = await _box;
+    Map<dynamic, TodoModel> todoItems = box.toMap();
     return todoItems;
   }
 
-  Future<void> delete(title) async {
-    Box box = await _box;
+  Future<void> delete(key) async {
+    Box<TodoModel> box = await _box;
+    await box.delete(key);
   }
 }
