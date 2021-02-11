@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   TodoModelRepository _repository = TodoModelRepository();
 
-  Map<dynamic, TodoModel> _todoItems = {0: TodoModel("aaa")};
+  Map<dynamic, TodoModel> _todoItems;
 
   @override
   void initState() {
