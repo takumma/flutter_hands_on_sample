@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/create_page.dart';
+import 'package:flutter_hands_on/model/db.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,16 +14,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _controller;
 
-  List<String> _todoItems = [
-    "英語の課題",
-    "牛乳を買う",
-    "Flutterの環境構築をする",
-  ];
+  TodoModelRepository _repository = TodoModelRepository();
+
+  Map<dynamic, TodoModel> _todoItems = {0: TodoModel("aaa")};
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _fetchTodoItems();
+  }
+
+  Future<void> _fetchTodoItems() async{
+    _todoItems = await _repository.fetch();
   }
 
   void dispose() {
@@ -32,13 +36,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addTodo(String title) {
     setState(() {
-      _todoItems.add(title);
+      _repository.save(title);
+      _fetchTodoItems();
     });
   }
 
-  void _deleteTodo(String title) {
+  void _deleteTodo(key) {
     setState(() {
-      _todoItems.remove(title);
+      _todoItems.remove(key);
+      _repository.delete(key);
+      _fetchTodoItems();
     });
   }
 
@@ -48,10 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.builder(
+      body: _todoItems?.length == null
+        ? Container()
+        : ListView.builder(
         itemCount: _todoItems.length,
         itemBuilder: (BuildContext context, int index) {
-          return _todoItem(_todoItems[index]);
+          int key = _todoItems.keys.elementAt(index);
+          return _todoItem(key, _todoItems[key]);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -65,30 +75,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _todoItem(String title) {
+  Widget _todoItem(int key, TodoModel todo) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 1.0, color: Colors.grey),
       ),
       margin: EdgeInsets.all(5.0),
       child: ListTile(
-        title: Text(title),
-        onTap: () => showDetailDialog(context, title),
+        title: Text(todo.title),
+        onTap: () => _showDetailDialog(context, key, todo),
       ),
     );
   }
 
-  void showDetailDialog(BuildContext context, String title) {
+  void _showDetailDialog(BuildContext context, int key,  TodoModel todo) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(title),
+        title: Text(todo.title),
         actions: [
           IconButton(
             icon: Icon(Icons.delete),
             color: Colors.red,
             onPressed: () {
-              _deleteTodo(title);
+              _deleteTodo(key);
               Navigator.pop(context);
             },
           ),
