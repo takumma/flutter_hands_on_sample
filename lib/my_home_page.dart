@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _fetchTodoItems();
   }
 
-  Future<void> _fetchTodoItems() async{
+  Future<void> _fetchTodoItems() async {
     _todoItems = await _repository.fetch();
   }
 
@@ -56,14 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: _todoItems?.length == null
-        ? Container()
-        : ListView.builder(
-        itemCount: _todoItems.length,
-        itemBuilder: (BuildContext context, int index) {
-          int key = _todoItems.keys.elementAt(index);
-          return _todoItem(key, _todoItems[key]);
-        },
-      ),
+          ? Container()
+          : ListView.builder(
+              itemCount: _todoItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                int key = _todoItems.keys.elementAt(index);
+                return _todoItem(key, _todoItems[key]);
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final String title = await Navigator.of(context)
@@ -76,19 +76,26 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _todoItem(int key, TodoModel todo) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 1.0, color: Colors.grey),
-      ),
-      margin: EdgeInsets.all(5.0),
-      child: ListTile(
-        title: Text(todo.title),
-        onTap: () => _showDetailDialog(context, key, todo),
+    return Card(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: 1.0, color: Colors.red),
+        ),
+        child: ListTile(
+          title: Text(
+            todo.title,
+            style: TextStyle(fontSize: 20.0),
+          ),
+          trailing: IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () => _showDetailDialog(context, key, todo),
+          ),
+        ),
       ),
     );
   }
 
-  void _showDetailDialog(BuildContext context, int key,  TodoModel todo) {
+  void _showDetailDialog(BuildContext context, int key, TodoModel todo) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
