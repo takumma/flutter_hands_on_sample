@@ -82,13 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           border: Border.all(width: 1.0, color: Colors.red),
         ),
         child: ListTile(
-          title: Text(
-            todo.title,
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          title: Text(todo.title),
           trailing: IconButton(
             icon: Icon(Icons.more_vert),
             onPressed: () => _showDetailDialog(context, key, todo),
