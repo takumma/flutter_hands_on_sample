@@ -84,7 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListTile(
           title: Text(
             todo.title,
-            style: TextStyle(fontSize: 20.0),
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           trailing: IconButton(
             icon: Icon(Icons.more_vert),
