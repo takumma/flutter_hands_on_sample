@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hands_on/my_home_page.dart';
 
 class CreatePage extends StatefulWidget {
 
@@ -42,7 +43,7 @@ class _CreatePageState extends State<CreatePage> {
               child: const Text("Add"),
               onPressed: () {
                 _controller.clear();
-                Navigator.pop(context, _title);
+                Navigator.pop(context, Todo(_title, Icons.add));
               },
             ),
           ],

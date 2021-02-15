@@ -11,17 +11,27 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class Todo {
+  String title;
+  IconData icon;
+
+  Todo(this.title, this.icon);
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController _controller;
 
   TodoModelRepository _repository = TodoModelRepository();
 
   Map<dynamic, TodoModel> _todoItems;
 
+  List<Todo> _todoS = [
+    Todo("sample text", Icons.map),
+    Todo("sample 2", Icons.add),
+  ];
+
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
     _fetchTodoItems();
   }
 
@@ -29,23 +39,20 @@ class _MyHomePageState extends State<MyHomePage> {
     _todoItems = await _repository.fetch();
   }
 
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _addTodo(String title) {
+  void _addTodo(String title, IconData icon) {
     setState(() {
       _repository.save(title);
       _fetchTodoItems();
+      _todoS.add(Todo(title, icon));
     });
   }
 
-  void _deleteTodo(key) {
+  void _deleteTodo(Todo todo) {
     setState(() {
-      _todoItems.remove(key);
-      _repository.delete(key);
-      _fetchTodoItems();
+      // _todoItems.remove(todo);
+      // _repository.delete(key);
+      // _fetchTodoItems();
+      _todoS.remove(todo);
     });
   }
 
@@ -55,44 +62,42 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _todoItems?.length == null
-          ? Container()
-          : ListView.builder(
-              itemCount: _todoItems.length,
+      body: ListView.builder(
+              itemCount: _todoS.length,
               itemBuilder: (BuildContext context, int index) {
-                int key = _todoItems.keys.elementAt(index);
-                return _todoItem(key, _todoItems[key]);
+                return _todoItem(_todoS[index]);
               },
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final String title = await Navigator.of(context)
+          final Todo todo = await Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CreatePage()));
-          if (title != null && title != "") _addTodo(title);
+          if (todo.title != null && todo.title != "") _addTodo(todo.title, todo.icon);
         },
         child: Icon(Icons.add),
       ),
     );
   }
 
-  Widget _todoItem(int key, TodoModel todo) {
+  Widget _todoItem(Todo todo) {
     return Card(
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(width: 1.0, color: Colors.red),
         ),
         child: ListTile(
+          leading: Icon(todo.icon),
           title: Text(todo.title),
           trailing: IconButton(
             icon: Icon(Icons.more_vert),
-            onPressed: () => _showDetailDialog(context, key, todo),
+            onPressed: () => _showDetailDialog(context, todo),
           ),
         ),
       ),
     );
   }
 
-  void _showDetailDialog(BuildContext context, int key, TodoModel todo) {
+  void _showDetailDialog(BuildContext context, Todo todo) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -102,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.delete),
             color: Colors.red,
             onPressed: () {
-              _deleteTodo(key);
+              _deleteTodo(todo);
               Navigator.pop(context);
             },
           ),
