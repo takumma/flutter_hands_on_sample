@@ -20,30 +20,29 @@ class Todo {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  TodoModelRepository _repository = TodoModelRepository();
+  // TodoModelRepository _repository = TodoModelRepository();
 
-  Map<dynamic, TodoModel> _todoItems;
 
-  List<Todo> _todoS = [
+  List<Todo> _todoItems = [
     Todo("sample text", Icons.map),
     Todo("sample 2", Icons.add),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchTodoItems();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _fetchTodoItems();
+  // }
 
-  Future<void> _fetchTodoItems() async {
-    _todoItems = await _repository.fetch();
-  }
+  // Future<void> _fetchTodoItems() async {
+  //   _todoItems = await _repository.fetch();
+  // }
 
   void _addTodo(String title, IconData icon) {
     setState(() {
-      _repository.save(title);
-      _fetchTodoItems();
-      _todoS.add(Todo(title, icon));
+      // _repository.save(title);
+      // _fetchTodoItems();
+      _todoItems.add(Todo(title, icon));
     });
   }
 
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _todoItems.remove(todo);
       // _repository.delete(key);
       // _fetchTodoItems();
-      _todoS.remove(todo);
+      _todoItems.remove(todo);
     });
   }
 
@@ -63,9 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-              itemCount: _todoS.length,
+              itemCount: _todoItems.length,
               itemBuilder: (BuildContext context, int index) {
-                return _todoItem(_todoS[index]);
+                return _todoItem(_todoItems[index]);
               },
             ),
       floatingActionButton: FloatingActionButton(
