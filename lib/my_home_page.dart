@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/create_page.dart';
-import 'package:flutter_hands_on/model/db.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -19,9 +18,7 @@ class Todo {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   // TodoModelRepository _repository = TodoModelRepository();
-
 
   List<Todo> _todoItems = [
     Todo("sample text", Icons.map),
@@ -61,11 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-              itemCount: _todoItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _todoItem(_todoItems[index]);
-              },
-            ),
+        itemCount: _todoItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _todoItem(_todoItems[index]);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           final Todo todo = await Navigator.of(context)
@@ -84,7 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
           border: Border.all(width: 1.0, color: Colors.red),
         ),
         child: ListTile(
-          leading: Icon(todo.icon),
+          leading: Icon(
+            todo.icon,
+            size: 35.0,
+          ),
           title: Text(todo.title),
           trailing: IconButton(
             icon: Icon(Icons.more_vert),

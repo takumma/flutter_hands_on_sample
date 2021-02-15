@@ -9,8 +9,9 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   String _title = "";
+  IconData _icon;
 
-  IconData _icon = Icons.access_alarm;
+  bool _isError = false;
 
   TextEditingController _controller;
 
@@ -56,25 +57,44 @@ class _CreatePageState extends State<CreatePage> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: Icon(_icon),
+                      child: _icon != null
+                          ? Icon(
+                              _icon,
+                              size: 45.0,
+                            )
+                          : Text("none"),
                     ),
                     Spacer(),
                     Expanded(
                       child: ElevatedButton(
                         child: const Text("Pick Icon"),
-                        onPressed: () {},
+                        onPressed: () => _pickIcon(),
                       ),
                     ),
                   ],
                 ),
               ),
-              ElevatedButton(
-                child: const Text("Add"),
-                onPressed: () {
-                  _controller.clear();
-                  Navigator.pop(context, Todo(_title, Icons.add));
-                },
+              Container(
+                padding: EdgeInsets.only(top: 30.0),
+                child: ElevatedButton(
+                  child: const Text("Add"),
+                  onPressed: () {
+                    _controller.clear();
+                    if (_title == "" || _icon == null) {
+                      setState(() {
+                        _isError = true;
+                      });
+                      return;
+                    }
+                    Navigator.pop(context, Todo(_title, _icon));
+                  },
+                ),
               ),
+              if (_isError)
+                Text(
+                  "全ての項目を埋めてください",
+                  style: TextStyle(color: Colors.red),
+                ),
             ],
           ),
         ),
