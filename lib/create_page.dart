@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/my_home_page.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 class CreatePage extends StatefulWidget {
 
@@ -10,6 +11,8 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
 
   String _title = "";
+
+  IconData _icon;
 
   TextEditingController _controller;
 
@@ -22,6 +25,13 @@ class _CreatePageState extends State<CreatePage> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  _pickIcon() async {
+    IconData icon = await FlutterIconPicker.showIconPicker(context);
+    setState(() {
+      _icon = icon;
+    });
   }
 
   @override
