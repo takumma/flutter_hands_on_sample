@@ -48,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _deleteTodo(Todo todo) {
     setState(() {
-      // _todoItems.remove(todo);
       // _repository.delete(key);
       // _fetchTodoItems();
       _todoItems.remove(todo);
