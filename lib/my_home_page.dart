@@ -18,35 +18,20 @@ class Todo {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // TodoModelRepository _repository = TodoModelRepository();
 
   List<Todo> _todoItems = [
-    Todo("sample text", Icons.map),
-    Todo("sample 2", Icons.add),
+    Todo("英語の課題", Icons.description),
+    Todo("牛乳を買う", Icons.local_grocery_store),
   ];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _fetchTodoItems();
-  // }
-
-  // Future<void> _fetchTodoItems() async {
-  //   _todoItems = await _repository.fetch();
-  // }
 
   void _addTodo(String title, IconData icon) {
     setState(() {
-      // _repository.save(title);
-      // _fetchTodoItems();
       _todoItems.add(Todo(title, icon));
     });
   }
 
   void _deleteTodo(Todo todo) {
     setState(() {
-      // _repository.delete(key);
-      // _fetchTodoItems();
       _todoItems.remove(todo);
     });
   }
