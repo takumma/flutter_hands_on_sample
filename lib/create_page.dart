@@ -13,19 +13,6 @@ class _CreatePageState extends State<CreatePage> {
 
   bool _isError = false;
 
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   _pickIcon() async {
     IconData icon = await FlutterIconPicker.showIconPicker(context);
     setState(() {
@@ -49,7 +36,6 @@ class _CreatePageState extends State<CreatePage> {
                 decoration: InputDecoration(
                   labelText: "TODO title",
                 ),
-                controller: _controller,
                 onChanged: (String text) => _title = text,
               ),
               Container(
@@ -79,7 +65,6 @@ class _CreatePageState extends State<CreatePage> {
                 child: ElevatedButton(
                   child: const Text("Add"),
                   onPressed: () {
-                    _controller.clear();
                     if (_title == "" || _icon == null) {
                       setState(() {
                         _isError = true;
