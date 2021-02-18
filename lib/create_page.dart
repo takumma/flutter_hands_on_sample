@@ -39,29 +39,24 @@ class _CreatePageState extends State<CreatePage> {
                 onChanged: (String text) => _title = text,
               ),
               Container(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.only(top: 20.0, bottom: 30.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(
-                      child: _icon != null
-                          ? Icon(
-                              _icon,
-                              size: 45.0,
-                            )
-                          : Text("none"),
-                    ),
-                    Spacer(),
-                    Expanded(
-                      child: ElevatedButton(
-                        child: const Text("Pick Icon"),
-                        onPressed: () => _pickIcon(),
-                      ),
+                    _icon != null
+                        ? Icon(
+                            _icon,
+                            size: 45.0,
+                          )
+                        : Text("none"),
+                    ElevatedButton(
+                      child: const Text("Pick Icon"),
+                      onPressed: () => _pickIcon(),
                     ),
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 30.0),
                 child: ElevatedButton(
                   child: const Text("Add"),
                   onPressed: () {
