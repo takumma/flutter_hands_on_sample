@@ -15,9 +15,11 @@ class _CreatePageState extends State<CreatePage> {
 
   _pickIcon() async {
     IconData icon = await FlutterIconPicker.showIconPicker(context);
-    setState(() {
-      _icon = icon;
-    });
+    if(icon != null) {
+      setState(() {
+        _icon = icon;
+      });
+    }
   }
 
   @override
@@ -56,19 +58,17 @@ class _CreatePageState extends State<CreatePage> {
                   ],
                 ),
               ),
-              Container(
-                child: ElevatedButton(
-                  child: const Text("Add"),
-                  onPressed: () {
-                    if (_title == "" || _icon == null) {
-                      setState(() {
-                        _isError = true;
-                      });
-                      return;
-                    }
-                    Navigator.pop(context, Todo(_title, _icon));
-                  },
-                ),
+              ElevatedButton(
+                child: const Text("Add"),
+                onPressed: () {
+                  if (_title == "" || _icon == null) {
+                    setState(() {
+                      _isError = true;
+                    });
+                    return;
+                  }
+                  Navigator.pop(context, Todo(_title, _icon));
+                },
               ),
               if (_isError)
                 Text(
