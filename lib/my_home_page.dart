@@ -24,9 +24,9 @@ class _MyHomePageState extends State<MyHomePage> {
     Todo("牛乳を買う", Icons.local_grocery_store),
   ];
 
-  void _addTodo(String title, IconData icon) {
+  void _addTodo(Todo todo) {
     setState(() {
-      _todoItems.add(Todo(title, icon));
+      _todoItems.add(todo);
     });
   }
 
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () async {
           final Todo todo = await Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CreatePage()));
-          if (todo != null && todo.title != "") _addTodo(todo.title, todo.icon);
+          if (todo != null) _addTodo(todo);
         },
         child: Icon(Icons.add),
       ),
