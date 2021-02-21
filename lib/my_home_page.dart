@@ -15,11 +15,9 @@ class _MyHomePageState extends State<MyHomePage> {
     "牛乳を買う",
   ];
 
-  int _counter = 0;
-
-  void _incrementCounter() {
+  void _addTodo(String title) {
     setState(() {
-      _counter++;
+      _todoItems.add(title);
     });
   }
 
@@ -48,8 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: () => _addTodo("追加したTODO"),
+        tooltip: 'Add Todo',
         child: Icon(Icons.add),
       ),
     );
