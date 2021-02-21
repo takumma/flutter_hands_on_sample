@@ -33,8 +33,16 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: _todoItems.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: ListTile(
-              title: Text(_todoItems[index]),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1.0, color: Colors.red),
+              ),
+              child: ListTile(
+                title: Text(_todoItems[index]),
+                trailing: IconButton(
+                  icon: Icon(Icons.more_vert),
+                ),
+              ),
             ),
           );
         },
