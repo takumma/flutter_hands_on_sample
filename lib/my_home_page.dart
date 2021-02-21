@@ -24,19 +24,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: ListView(
+        children: [
+          Card(
+            child: ListTile(
+              title: Text("サンプルテキスト1"),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          ),
+          Card(
+            child: ListTile(
+              title: Text("サンプルテキスト2"),
             ),
-          ],
-        ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text("サンプルテキスト3"),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
