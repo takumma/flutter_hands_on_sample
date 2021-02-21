@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'create_page.dart';
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -39,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text(_todoItems[index]),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
+                  onPressed: () {},
                 ),
               ),
             ),
@@ -46,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addTodo("追加したTODO"),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreatePage())),
         tooltip: 'Add Todo',
         child: Icon(Icons.add),
       ),

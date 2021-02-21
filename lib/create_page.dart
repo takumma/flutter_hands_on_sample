@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CreatePage extends StatefulWidget {
-
   @override
   _CreatePageState createState() => _CreatePageState();
 }
 
 class _CreatePageState extends State<CreatePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +13,16 @@ class _CreatePageState extends State<CreatePage> {
         title: const Text("Create TODO"),
       ),
       body: Center(
-        child: Text("新規作成ページ"),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("新規作成ページ"),
+            ElevatedButton(
+              child: Text("Back"),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ],
+        ),
       ),
     );
   }
