@@ -41,7 +41,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text(_todoItems[index]),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
-                  onPressed: () {},
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: Text(_todoItems[index]),
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Colors.red,
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -50,11 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final String title = await Navigator
-            .of(context)
-            .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          final String title = await Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => CreatePage()));
           if (title != null && title != "") _addTodo(title);
-          },
+        },
         tooltip: 'Add Todo',
         child: Icon(Icons.add),
       ),
