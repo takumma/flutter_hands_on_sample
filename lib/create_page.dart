@@ -24,8 +24,8 @@ class _CreatePageState extends State<CreatePage> {
               onChanged: (String text) => _title = text,
             ),
             ElevatedButton(
-              child: Text("Back"),
-              onPressed: () => Navigator.pop(context),
+              child: Text("Add"),
+              onPressed: () => Navigator.pop(context, _title),
             ),
           ],
         ),

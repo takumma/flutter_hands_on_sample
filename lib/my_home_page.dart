@@ -49,7 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreatePage())),
+        onPressed: () async {
+          final String title = await Navigator
+            .of(context)
+            .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          },
         tooltip: 'Add Todo',
         child: Icon(Icons.add),
       ),
