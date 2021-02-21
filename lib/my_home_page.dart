@@ -23,6 +23,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTodo(int index) {
+    setState(() {
+      _todoItems.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         IconButton(
                           icon: Icon(Icons.delete),
                           color: Colors.red,
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () {
+                            _deleteTodo(index);
+                            Navigator.pop(context);
+                          },
                         ),
                       ],
                     ),
