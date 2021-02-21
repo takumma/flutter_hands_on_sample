@@ -6,6 +6,9 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+
+  String _title = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +19,10 @@ class _CreatePageState extends State<CreatePage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("新規作成ページ"),
+            Text("TODOを入力してください"),
+            TextField(
+              onChanged: (String text) => _title = text,
+            ),
             ElevatedButton(
               child: Text("Back"),
               onPressed: () => Navigator.pop(context),
