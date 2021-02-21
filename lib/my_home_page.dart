@@ -10,6 +10,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<String> _todoItems = [
+    "英語の課題",
+    "牛乳を買う",
+  ];
+
   int _counter = 0;
 
   void _incrementCounter() {
@@ -24,24 +29,15 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: [
-          Card(
+      body: ListView.builder(
+        itemCount: _todoItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
             child: ListTile(
-              title: Text("サンプルテキスト1"),
+              title: Text(_todoItems[index]),
             ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("サンプルテキスト2"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("サンプルテキスト3"),
-            ),
-          ),
-        ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
