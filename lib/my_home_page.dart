@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           final String title = await Navigator
             .of(context)
             .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          if (title != null && title != "") _addTodo(title);
           },
         tooltip: 'Add Todo',
         child: Icon(Icons.add),
