@@ -13,6 +13,8 @@ class _CreatePageState extends State<CreatePage> {
 
   IconData _icon;
 
+  bool _isError = false;
+
   void _pickIcon() async {
     IconData icon = await FlutterIconPicker.showIconPicker(context);
     setState(() {
@@ -26,27 +28,55 @@ class _CreatePageState extends State<CreatePage> {
       appBar: AppBar(
         title: const Text("Create TODO"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("TODOを入力してください"),
-            TextField(
-              onChanged: (String text) => _title = text,
-            ),
-            Icon(
-              _icon,
-              size: 45.0,
-            ),
-            ElevatedButton(
-              child: Text("Pick Icon"),
-              onPressed: () => _pickIcon(),
-            ),
-            ElevatedButton(
-              child: Text("Add"),
-              onPressed: () => Navigator.pop(context, Todo(_title, _icon)),
-            ),
-          ],
+      body: Container(
+        padding: EdgeInsets.all(40.0),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: "TODO title",
+                ),
+                onChanged: (String text) => _title = text,
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 20.0, bottom: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _icon != null
+                        ? Icon(
+                            _icon,
+                            size: 45.0,
+                          )
+                        : Text("none"),
+                    ElevatedButton(
+                      child: const Text("Pick Icon"),
+                      onPressed: () => _pickIcon(),
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                child: Text("Add"),
+                onPressed: () {
+                  if (_title == "" || _icon == null) {
+                    setState(() {
+                      _isError = true;
+                    });
+                    return;
+                  }
+                  Navigator.pop(context, Todo(_title, _icon));
+                },
+              ),
+              if (_isError)
+                Text(
+                  "全ての項目を埋めてください",
+                  style: TextStyle(color: Colors.red),
+                ),
+            ],
+          ),
         ),
       ),
     );
