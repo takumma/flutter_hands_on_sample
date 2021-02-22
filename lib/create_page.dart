@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
+import 'my_home_page.dart';
+
 class CreatePage extends StatefulWidget {
   @override
   _CreatePageState createState() => _CreatePageState();
@@ -42,7 +44,7 @@ class _CreatePageState extends State<CreatePage> {
             ),
             ElevatedButton(
               child: Text("Add"),
-              onPressed: () => Navigator.pop(context, _title),
+              onPressed: () => Navigator.pop(context, Todo(_title, _icon)),
             ),
           ],
         ),

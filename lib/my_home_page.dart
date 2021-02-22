@@ -75,9 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final String title = await Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CreatePage()));
-          if (title != null && title != "") _addTodo(Todo(title, Icons.add));
+          final Todo todo = await Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          if (todo != null) _addTodo(todo);
         },
         tooltip: 'Add Todo',
         child: Icon(Icons.add),
