@@ -44,6 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 border: Border.all(width: 1.0, color: Colors.red),
               ),
               child: ListTile(
+                leading: Icon(
+                  _todoItems[index].icon,
+                  size: 35.0,
+                ),
                 title: Text(_todoItems[index].title),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
