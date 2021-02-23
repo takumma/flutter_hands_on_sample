@@ -1,16 +1,7 @@
-# flutter_hands_on
+# flutter_hands_on_sample
 
-A new Flutter project.
+[hands-on ブランチ](https://github.com/takumma/flutter_hands_on_sample/tree/hands-on)でハンズオンの流れに沿ってソースコードが見れます。
 
-## Getting Started
+## Zenn book
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ハンズオンの資料：https://zenn.dev/takumma/books/flutter-beginners-hands-on
