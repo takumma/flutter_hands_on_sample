@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/create_page.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -18,7 +18,6 @@ class Todo {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   List<Todo> _todoItems = [
     Todo("英語の課題", Icons.description),
     Todo("牛乳を買う", Icons.local_grocery_store),
@@ -50,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final Todo todo = await Navigator.of(context)
+          final Todo? todo = await Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CreatePage()));
           if (todo != null) _addTodo(todo);
         },

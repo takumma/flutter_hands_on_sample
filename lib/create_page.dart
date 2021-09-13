@@ -9,13 +9,13 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   String _title = "";
-  IconData _icon;
+  IconData? _icon;
 
   bool _isError = false;
 
   _pickIcon() async {
-    IconData icon = await FlutterIconPicker.showIconPicker(context);
-    if(icon != null) {
+    IconData? icon = await FlutterIconPicker.showIconPicker(context);
+    if (icon != null) {
       setState(() {
         _icon = icon;
       });
@@ -67,7 +67,7 @@ class _CreatePageState extends State<CreatePage> {
                     });
                     return;
                   }
-                  Navigator.pop(context, Todo(_title, _icon));
+                  Navigator.pop(context, Todo(_title, _icon!));
                 },
               ),
               if (_isError)
