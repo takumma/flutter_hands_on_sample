@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hands_on/create_page.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -18,7 +18,7 @@ class Todo {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Todo> _todoItems = [
+  final List<Todo> _todoItems = [
     Todo("英語の課題", Icons.description),
     Todo("牛乳を買う", Icons.local_grocery_store),
   ];
@@ -49,11 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final Todo? todo = await Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => CreatePage()));
+          final Todo? todo = await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const CreatePage()));
           if (todo != null) _addTodo(todo);
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           title: Text(todo.title),
           trailing: IconButton(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onPressed: () => _showDetailDialog(context, todo),
           ),
         ),
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(todo.title),
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             color: Colors.red,
             onPressed: () {
               _deleteTodo(todo);

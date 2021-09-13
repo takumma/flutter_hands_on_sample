@@ -3,6 +3,7 @@ import 'package:flutter_hands_on/my_home_page.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 
 class CreatePage extends StatefulWidget {
+  const CreatePage({Key? key}) : super(key: key);
   @override
   _CreatePageState createState() => _CreatePageState();
 }
@@ -29,19 +30,19 @@ class _CreatePageState extends State<CreatePage> {
         title: const Text("Create TODO"),
       ),
       body: Container(
-        padding: EdgeInsets.all(40.0),
+        padding: const EdgeInsets.all(40.0),
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "TODO title",
                 ),
                 onChanged: (String text) => _title = text,
               ),
               Container(
-                padding: EdgeInsets.only(top: 20.0, bottom: 30.0),
+                padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -50,7 +51,7 @@ class _CreatePageState extends State<CreatePage> {
                             _icon,
                             size: 45.0,
                           )
-                        : Text("none"),
+                        : const Text("none"),
                     ElevatedButton(
                       child: const Text("Pick Icon"),
                       onPressed: () => _pickIcon(),
@@ -71,7 +72,7 @@ class _CreatePageState extends State<CreatePage> {
                 },
               ),
               if (_isError)
-                Text(
+                const Text(
                   "全ての項目を埋めてください",
                   style: TextStyle(color: Colors.red),
                 ),
